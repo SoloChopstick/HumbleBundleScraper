@@ -14,24 +14,25 @@ tiers_dict = {}
 
 #Bundle tiers
 tiers = soup.select(".dd-game-row")
+#print (tiers)
 for tier in tiers:
     #if has a headline
-    if tier.select(".dd-head-headline"):
+    if tier.select(".dd-header-headline"):
         #Grab tier name and price
-        tiername = tier.select(".dd-head-headline")[0].text.strip()
-
+        #print("hello")
+        tiername = tier.select(".dd-header-headline")[0].text.strip()
         #Grab tier product names
         product_names = tier.select(".front-page-art-image-text")
         product_names = [prodname.text.strip() for prodname in product_names]
 
         # Add
-        tier_dict[tiername] = {"products": product_names}
+        tiers_dict[tiername] = {"products": product_names}
 
 for tiername, tierinfo in tiers_dict.items():
     print(tiername)
-    print("priced at", tierinfo['price'])
-    print("products:")
-    print(", ".join(tierinfo['products']))
+    #print("priced at", tierinfo['price'])
+    print("PRODUCTS:")
+    print("\n".join(tierinfo['products']))
     print("\n")
 
 #Bundle tiers class: (price and tier)
